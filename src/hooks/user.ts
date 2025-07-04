@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/require-await */
-import { getItem, removeItem, setItem } from "@/utils/storage"
+import { getItem, removeItem, setItem } from "@/lib/utils/storage"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
 const USER_KEY = "user"
