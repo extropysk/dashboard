@@ -2,9 +2,14 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import RootLayout from "./layouts/RootLayout";
-import Home from "./components/Home";
+
 import About from "./components/About";
 import "./index.css";
+import Home from "@/app/home/page";
+
+const Login = () => {
+  return <div>TEST</div>;
+};
 
 const router = createBrowserRouter([
   {
@@ -20,6 +25,10 @@ const router = createBrowserRouter([
         element: <About />,
       },
     ],
+  },
+  {
+    path: "/login",
+    element: <Login />,
   },
 ]);
 
