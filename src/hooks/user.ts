@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/require-await */
 import { getItem, removeItem, setItem } from "@/utils/storage";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 
@@ -17,9 +18,9 @@ export const useUserQuery = () => {
 export const useLoginMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async (data: User) => setItem<User>(USER_KEY, data),
+    mutationFn: async (data: User) => { setItem<User>(USER_KEY, data); },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [USER_KEY] });
+      void queryClient.invalidateQueries({ queryKey: [USER_KEY] });
     },
   });
 };
@@ -27,9 +28,9 @@ export const useLoginMutation = () => {
 export const useLogoutMutation = () => {
   const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: async () => removeItem(USER_KEY),
+    mutationFn: async () => { removeItem(USER_KEY); },
     onSuccess: () => {
-      queryClient.invalidateQueries({ queryKey: [USER_KEY] });
+      void queryClient.invalidateQueries({ queryKey: [USER_KEY] });
     },
   });
 };
