@@ -1,9 +1,9 @@
 import { ChartAreaInteractive } from "@/components/chart-area-interactive";
 import { DataTable } from "@/components/data-table";
 import { SectionCards } from "@/components/section-cards";
-import data from "@/app/home/data.json";
+import data from "@/app/data.json";
 
-export default function Home() {
+export default function RootPage() {
   return (
     <div className="flex flex-col gap-4 py-4 md:gap-6 md:py-6">
       <SectionCards />
