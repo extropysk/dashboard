@@ -1,4 +1,4 @@
-import { Button } from "@/components/ui/button";
+import { Button } from "@/components/ui/button"
 
 export default function About() {
   return (
@@ -7,5 +7,5 @@ export default function About() {
       <p>This is a Progressive Web App built with React and Vite</p>
       <Button>Click me</Button>
     </div>
-  );
+  )
 }

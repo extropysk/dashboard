@@ -1,14 +1,14 @@
-import { AppSidebar } from "@/components/app-sidebar";
-import { SiteHeader } from "@/components/site-header";
-import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar";
-import { useUserQuery } from "@/hooks/user";
-import { Navigate, Outlet } from "react-router-dom";
+import { AppSidebar } from "@/components/app-sidebar"
+import { SiteHeader } from "@/components/site-header"
+import { SidebarInset, SidebarProvider } from "@/components/ui/sidebar"
+import { useUserQuery } from "@/hooks/user"
+import { Navigate, Outlet } from "react-router-dom"
 
 export default function RootLayout() {
-  const { data: user } = useUserQuery();
+  const { data: user } = useUserQuery()
 
   if (!user) {
-    return <Navigate to="/login" />;
+    return <Navigate to="/login" />
   }
 
   return (
@@ -30,5 +30,5 @@ export default function RootLayout() {
         </div>
       </SidebarInset>
     </SidebarProvider>
-  );
+  )
 }

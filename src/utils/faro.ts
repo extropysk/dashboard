@@ -6,10 +6,10 @@ import {
   SessionInstrumentation,
   faro,
   initializeFaro,
-} from "@grafana/faro-web-sdk";
+} from "@grafana/faro-web-sdk"
 
 export const initFaro = () => {
-  const faroUrl = import.meta.env.VITE_FARO_URL;
+  const faroUrl = import.meta.env.VITE_FARO_URL
   if (faroUrl) {
     initializeFaro({
       url: faroUrl,
@@ -25,10 +25,10 @@ export const initFaro = () => {
         }),
         new SessionInstrumentation(),
       ],
-    });
+    })
   }
-};
+}
 
 export const pushFaroEvent = (name: string, attributes?: EventAttributes) => {
-  faro.api?.pushEvent(name, attributes);
-};
+  faro.api?.pushEvent(name, attributes)
+}

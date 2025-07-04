@@ -1,16 +1,16 @@
-import { cn } from "@/lib/utils";
-import { Button } from "@/components/ui/button";
+import { cn } from "@/lib/utils"
+import { Button } from "@/components/ui/button"
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import z from "zod";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { useForm } from "react-hook-form";
+} from "@/components/ui/card"
+import { Input } from "@/components/ui/input"
+import z from "zod"
+import { zodResolver } from "@hookform/resolvers/zod"
+import { useForm } from "react-hook-form"
 import {
   Form,
   FormControl,
@@ -18,30 +18,30 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "@/components/ui/form";
-import { useLoginMutation } from "@/hooks/user";
+} from "@/components/ui/form"
+import { useLoginMutation } from "@/hooks/user"
 
 const LOGIN_SCHEMA = z.object({
   email: z.string().email(),
-});
+})
 
-type Login = z.infer<typeof LOGIN_SCHEMA>;
+type Login = z.infer<typeof LOGIN_SCHEMA>
 
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"div">) {
-  const { mutate: login, isPending } = useLoginMutation();
+  const { mutate: login, isPending } = useLoginMutation()
 
   const form = useForm<Login>({
     resolver: zodResolver(LOGIN_SCHEMA),
     defaultValues: {
       email: "",
     },
-  });
+  })
 
   function onSubmit(data: Login) {
-    login(data);
+    login(data)
   }
 
   return (
@@ -118,5 +118,5 @@ export function LoginForm({
         and <a href="#">Privacy Policy</a>.
       </div>
     </div>
-  );
+  )
 }

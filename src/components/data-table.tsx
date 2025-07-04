@@ -97,12 +97,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table"
-import {
-  Tabs,
-  TabsContent,
-  TabsList,
-  TabsTrigger,
-} from "@/components/ui/tabs"
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 
 export const schema = z.object({
   id: z.number(),
@@ -149,7 +144,9 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
             table.getIsAllPageRowsSelected() ||
             (table.getIsSomePageRowsSelected() && "indeterminate")
           }
-          onCheckedChange={(value) => { table.toggleAllPageRowsSelected(!!value); }}
+          onCheckedChange={(value) => {
+            table.toggleAllPageRowsSelected(!!value)
+          }}
           aria-label="Select all"
         />
       </div>
@@ -158,7 +155,9 @@ const columns: ColumnDef<z.infer<typeof schema>>[] = [
       <div className="flex items-center justify-center">
         <Checkbox
           checked={row.getIsSelected()}
-          onCheckedChange={(value) => { row.toggleSelected(!!value); }}
+          onCheckedChange={(value) => {
+            row.toggleSelected(!!value)
+          }}
           aria-label="Select row"
         />
       </div>
@@ -457,9 +456,9 @@ export function DataTable({
                       key={column.id}
                       className="capitalize"
                       checked={column.getIsVisible()}
-                      onCheckedChange={(value) =>
-                        { column.toggleVisibility(!!value); }
-                      }
+                      onCheckedChange={(value) => {
+                        column.toggleVisibility(!!value)
+                      }}
                     >
                       {column.id}
                     </DropdownMenuCheckboxItem>
@@ -566,7 +565,9 @@ export function DataTable({
               <Button
                 variant="outline"
                 className="hidden h-8 w-8 p-0 lg:flex"
-                onClick={() => { table.setPageIndex(0); }}
+                onClick={() => {
+                  table.setPageIndex(0)
+                }}
                 disabled={!table.getCanPreviousPage()}
               >
                 <span className="sr-only">Go to first page</span>
@@ -576,7 +577,9 @@ export function DataTable({
                 variant="outline"
                 className="size-8"
                 size="icon"
-                onClick={() => { table.previousPage(); }}
+                onClick={() => {
+                  table.previousPage()
+                }}
                 disabled={!table.getCanPreviousPage()}
               >
                 <span className="sr-only">Go to previous page</span>
@@ -586,7 +589,9 @@ export function DataTable({
                 variant="outline"
                 className="size-8"
                 size="icon"
-                onClick={() => { table.nextPage(); }}
+                onClick={() => {
+                  table.nextPage()
+                }}
                 disabled={!table.getCanNextPage()}
               >
                 <span className="sr-only">Go to next page</span>
@@ -596,7 +601,9 @@ export function DataTable({
                 variant="outline"
                 className="hidden size-8 lg:flex"
                 size="icon"
-                onClick={() => { table.setPageIndex(table.getPageCount() - 1); }}
+                onClick={() => {
+                  table.setPageIndex(table.getPageCount() - 1)
+                }}
                 disabled={!table.getCanNextPage()}
               >
                 <span className="sr-only">Go to last page</span>

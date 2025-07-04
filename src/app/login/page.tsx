@@ -1,13 +1,13 @@
-import { GalleryVerticalEnd } from "lucide-react";
-import { LoginForm } from "@/components/login-form";
-import { Navigate } from "react-router-dom";
-import { useUserQuery } from "@/hooks/user";
+import { GalleryVerticalEnd } from "lucide-react"
+import { LoginForm } from "@/components/login-form"
+import { Navigate } from "react-router-dom"
+import { useUserQuery } from "@/hooks/user"
 
 export function LoginPage() {
-  const { data: user } = useUserQuery();
+  const { data: user } = useUserQuery()
 
   if (user) {
-    return <Navigate to="/" />;
+    return <Navigate to="/" />
   }
 
   return (
@@ -22,5 +22,5 @@ export function LoginPage() {
         <LoginForm />
       </div>
     </div>
-  );
+  )
 }
