@@ -8,7 +8,6 @@ import {
   CardTitle,
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
-import z from "zod"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
 import {
@@ -20,12 +19,7 @@ import {
   FormMessage,
 } from "@/components/ui/form"
 import { useLoginMutation } from "@/hooks/user"
-
-const LOGIN_SCHEMA = z.object({
-  email: z.string().email(),
-})
-
-type Login = z.infer<typeof LOGIN_SCHEMA>
+import { LoginData, LOGIN_DATA_SCHEMA } from "@/types/user"
 
 export function LoginForm({
   className,
@@ -33,14 +27,15 @@ export function LoginForm({
 }: React.ComponentProps<"div">) {
   const { mutate: login, isPending } = useLoginMutation()
 
-  const form = useForm<Login>({
-    resolver: zodResolver(LOGIN_SCHEMA),
+  const form = useForm<LoginData>({
+    resolver: zodResolver(LOGIN_DATA_SCHEMA),
     defaultValues: {
       email: "",
+      password: "",
     },
   })
 
-  function onSubmit(data: Login) {
+  function onSubmit(data: LoginData) {
     login(data)
   }
 
@@ -98,6 +93,30 @@ export function LoginForm({
                       )}
                     />
                   </div>
+                  <div className="grid gap-3">
+                    <FormField
+                      control={form.control}
+                      name="password"
+                      render={({ field }) => (
+                        <FormItem>
+                          <div className="flex items-center">
+                            <FormLabel>Password</FormLabel>
+                            <a
+                              href="#"
+                              className="ml-auto text-sm underline-offset-4 hover:underline"
+                            >
+                              Forgot your password?
+                            </a>
+                          </div>
+                          <FormControl>
+                            <Input type="password" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+                  </div>
+
                   <Button type="submit" className="w-full" disabled={isPending}>
                     Login
                   </Button>
