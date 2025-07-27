@@ -1,5 +1,5 @@
 import { payload } from "@/lib/utils/payload"
-import { getItem, removeItem, setItem } from "@/lib/utils/storage"
+import { getItem, setItem } from "@/lib/utils/storage"
 import { LoginData } from "@/types/user"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 
@@ -27,8 +27,7 @@ export const useLoginMutation = () => {
   const queryClient = useQueryClient()
   return useMutation({
     mutationFn: async (data: LoginData) => {
-      const { user } = await payload.login<User>(data.email, data.password)
-      setItem<User>(USER_KEY, user)
+      await payload.login<User>(data.email, data.password)
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: [USER_KEY] })
@@ -41,7 +40,6 @@ export const useLogoutMutation = () => {
   return useMutation({
     mutationFn: async () => {
       await payload.logout()
-      removeItem(USER_KEY)
     },
     onSuccess: () => {
       void queryClient.invalidateQueries({ queryKey: [USER_KEY] })
