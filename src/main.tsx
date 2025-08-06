@@ -5,6 +5,7 @@ import { router } from "@/app"
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query"
 import { Toaster } from "@/components/ui/sonner"
 import { toast } from "sonner"
+import { ThemeProvider } from "@/components/theme-provider"
 
 import "./index.css"
 import "./i18n"
@@ -22,9 +23,11 @@ const queryClient = new QueryClient({
 // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      <Toaster />
-    </QueryClientProvider>
+    <ThemeProvider>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <Toaster />
+      </QueryClientProvider>
+    </ThemeProvider>
   </StrictMode>
 )
